@@ -38,15 +38,15 @@ const Nav = () => {
         <div>
 
             {/* mobile */}
-            <div className="md:hidden text-black">
+            <div className="md:hidden text-black  z-[998]">
                 <Button isIconOnly variant="light" onPress={() => { dispatch(setNavOpen(!navOpen)) }} radius="lg">
                     {
                         navOpen ? <IoCloseOutline className="text-3xl text-white" /> : <PiListLight className="text-3xl text-white" />
                     }
                 </Button>
-                {<motion.div initial={{ height: 0 }} animate={{ height: navOpen ? minNavHeight : 0 }} transition={{ duration: 0.4, ease: "easeInOut" }} className='absolute top-[74px] left-0 w-screen overflow-hidden overflow-y-auto  bg-transparent backdrop-blur-xl'>
+                {<motion.div initial={{ height: 0 }} animate={{ height: navOpen ? minNavHeight : 0 }} transition={{ duration: 0.4, ease: "easeInOut" }} className='absolute top-[74px] left-0 w-screen overflow-hidden overflow-y-auto   bg-gray-100'>
                     <div className="flex flex-col w-full relative">
-                        <div className="sticky p-3 pt-[15px] pl-[15px] top-0 bg-success-100/40 z-[998]">
+                        <div className="sticky p-3 pt-[15px] pl-[15px] top-0 bg-success-100/40 z-[997]">
                             <Link to={"/profile/12"} onClick={() => { dispatch(setNavOpen(false)) }}>
                                 <User
                                     classNames={{ name: 'text-xl font-semibold' }}
@@ -57,7 +57,7 @@ const Nav = () => {
                                     name={"Abdellah ait bachikh"}
                                 /></Link>
                         </div>
-                        <div className="p-2 z-[997]">
+                        <div className="p-2 z-[996]">
                             <Accordion selectionMode="multiple" motionProps={{
                                 variants: {
                                     enter: {

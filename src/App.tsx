@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Layout from './Layout'
@@ -8,6 +7,7 @@ import Register from './pages/auth/Register'
 import ForgetPassword from './pages/auth/ForgetPassword'
 import Show from './pages/conversation/Show'
 const App = () => {
+
   return (
     <BrowserRouter>
       <Routes>

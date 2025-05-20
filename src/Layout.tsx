@@ -5,7 +5,9 @@ import Header from './components/Header'
 const Layout = () => {
   return (<>
     <Header />
+    <main className='z-[100]'>
     <Outlet />
+    </main>
   </>
   )
 }

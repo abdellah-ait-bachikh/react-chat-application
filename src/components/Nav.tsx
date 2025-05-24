@@ -4,7 +4,7 @@ import { TappDispatch, TappInitialState } from "../lib/types"
 import { useDispatch, useSelector } from "react-redux"
 import { setDesktopNotification, setNavOpen } from "../redux/slices/appSLice"
 import { motion, scale } from 'framer-motion'
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Accordion, AccordionItem, Avatar } from "@heroui/react";
 import { Link } from "react-router-dom"
 import { IoCloseOutline } from "react-icons/io5";
@@ -14,6 +14,7 @@ const Nav = () => {
     const dispatch = useDispatch<TappDispatch>()
     const { navOpen, disktopNotifications } = useSelector((state: { app: TappInitialState }) => state.app)
     const [minNavHeight, setNavMinHeight] = useState(500)
+    const ref = useRef<HTMLDivElement>(null)
     useEffect(() => {
         const updateNavHeight = () => {
             setNavMinHeight(window.innerHeight - 74)
@@ -24,6 +25,17 @@ const Nav = () => {
             window.removeEventListener('resize', updateNavHeight)
         }
     }, [])
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (ref.current && !ref.current.contains(event.target as Node)) {
+                dispatch(setDesktopNotification(false))
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [dispatch])
     const defaultContent =
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit,  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
     const itemClasses = {
@@ -38,7 +50,7 @@ const Nav = () => {
         <div>
 
             {/* mobile */}
-            <div className="md:hidden text-black  z-[998]">
+            <div className="md:hidden text-black  z-[998]" >
                 <Button isIconOnly variant="light" onPress={() => { dispatch(setNavOpen(!navOpen)) }} radius="lg">
                     {
                         navOpen ? <IoCloseOutline className="text-3xl text-white" /> : <PiListLight className="text-3xl text-white" />
@@ -180,9 +192,9 @@ const Nav = () => {
             </div>
 
             {/* desktop */}
-            <div className="hidden md:block ">
+            <div className="hidden md:block " >
                 <div className="flex items-center gap-6">
-                    <div className="relative"> <Badge content={'2'} color="danger"><Button variant="light" isIconOnly radius="lg" className="text-3xl text-white" onPress={() => { dispatch(setDesktopNotification(!disktopNotifications)) }}><RiNotificationFill /></Button>
+                    <div className="relative" ref={ref}> <Badge content={'2'} color="danger"><Button variant="light" isIconOnly radius="lg" className="text-3xl text-white" onPress={() => { dispatch(setDesktopNotification(!disktopNotifications)) }}><RiNotificationFill /></Button>
                     </Badge>  <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: disktopNotifications ? 1 : 0.5, opacity: disktopNotifications ? 1 : 0 }} className="absolute top-full right-0 w-[350px] text-black max-h-[550px] overflow-hidden overflow-y-auto">
                             <Accordion
                                 selectionMode="multiple"

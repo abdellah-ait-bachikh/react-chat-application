@@ -4,10 +4,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
 body {
-  @apply min-h-screen bg-gray-100 z-[999];
+  @apply min-h-screen  z-[999];
   font-family: "Rubik", sans-serif;
   font-optical-sizing: auto;
-
+background: url('../public/pexels-pixabay-158827.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+background-position: bottom;
 }
 div#root {
   /* @apply   ; */

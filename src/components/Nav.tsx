@@ -195,106 +195,107 @@ const Nav = () => {
             <div className="hidden md:block " >
                 <div className="flex items-center gap-6">
                     <div className="relative" ref={ref}> <Badge content={'2'} color="danger"><Button variant="light" isIconOnly radius="lg" className="text-3xl text-white" onPress={() => { dispatch(setDesktopNotification(!disktopNotifications)) }}><RiNotificationFill /></Button>
-                    </Badge>  <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: disktopNotifications ? 1 : 0.5, opacity: disktopNotifications ? 1 : 0 }} className="absolute top-full right-0 w-[350px] text-black max-h-[550px] overflow-hidden overflow-y-auto">
-                            <Accordion
-                                selectionMode="multiple"
-                                className="p-2 flex flex-col gap-1 w-full overflow-hidden"
-                                itemClasses={itemClasses}
-                                variant="shadow"
-                                motionProps={{
-                                    variants: {
-                                        enter: {
-                                            y: 0,
-                                            opacity: 1,
-                                            height: "auto",
-                                            overflowY: "unset",
-                                            transition: {
-                                                height: {
-                                                    type: "spring",
-                                                    stiffness: 500,
-                                                    damping: 30,
-                                                    duration: 1,
+                    </Badge>  <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: disktopNotifications ? 1 : 0.5, opacity: disktopNotifications ? 1 : 0 }} className={"absolute top-full right-0 w-[350px] text-black max-h-[550px] overflow-hidden overflow-y-auto "}>
+                            <div className={(disktopNotifications ? '' : 'hidden')}>
+                                <Accordion
+                                    selectionMode="multiple"
+                                    className={"p-2 flex flex-col gap-1 w-full overflow-hidden "}
+                                    itemClasses={itemClasses}
+                                    variant="shadow"
+                                    motionProps={{
+                                        variants: {
+                                            enter: {
+                                                y: 0,
+                                                opacity: 1,
+                                                height: "auto",
+                                                overflowY: "unset",
+                                                transition: {
+                                                    height: {
+                                                        type: "spring",
+                                                        stiffness: 500,
+                                                        damping: 30,
+                                                        duration: 1,
+                                                    },
+                                                    opacity: {
+                                                        easings: "ease",
+                                                        duration: 1,
+                                                    },
                                                 },
-                                                opacity: {
-                                                    easings: "ease",
-                                                    duration: 1,
+                                            },
+                                            exit: {
+                                                y: -10,
+                                                opacity: 0,
+                                                height: 0,
+                                                overflowY: "hidden",
+                                                transition: {
+                                                    height: {
+                                                        easings: "ease",
+                                                        duration: 0.25,
+                                                    },
+                                                    opacity: {
+                                                        easings: "ease",
+                                                        duration: 0.3,
+                                                    },
                                                 },
                                             },
                                         },
-                                        exit: {
-                                            y: -10,
-                                            opacity: 0,
-                                            height: 0,
-                                            overflowY: "hidden",
-                                            transition: {
-                                                height: {
-                                                    easings: "ease",
-                                                    duration: 0.25,
-                                                },
-                                                opacity: {
-                                                    easings: "ease",
-                                                    duration: 0.3,
-                                                },
-                                            },
-                                        },
-                                    },
-                                }}
-                            >
-
-                                <AccordionItem
-                                    key="2"
-                                    aria-label="Janelle Lenard"
-                                    startContent={<Link to={'/conversations/show/10'} onClick={(e) => {
-                                        e.stopPropagation()
-                                        dispatch(setDesktopNotification(false))
-                                    }}>
-                                        <Avatar
-                                            isBordered
-
-                                            radius="lg"
-                                            src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                                        /></Link>
-                                    }
-                                    subtitle="3 incompleted steps"
-                                    title={<Link to={'/conversations/show/10'} onClick={(e) => {
-                                        e.stopPropagation()
-                                        dispatch(setDesktopNotification(false))
-                                    }}>Janelle Lenard</Link>}
-                                    classNames={{ content: 'flex flex-col gap-2' }}
+                                    }}
                                 >
-                                    <p>1\ {defaultContent}</p>
 
-                                    <p>2\ ed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                                    <AccordionItem
+                                        key="2"
+                                        aria-label="Janelle Lenard"
+                                        startContent={<Link to={'/conversations/show/10'} onClick={(e) => {
+                                            e.stopPropagation()
+                                            dispatch(setDesktopNotification(false))
+                                        }}>
+                                            <Avatar
+                                                isBordered
 
-                                </AccordionItem>
-                                <AccordionItem
-                                    key="3"
-                                    aria-label="Zoey Lang"
-                                    startContent={<Link to={'/conversations/show/11'} onClick={(e) => {
-                                        e.stopPropagation()
-                                        dispatch(setDesktopNotification(false))
-                                    }}>
-                                        <Avatar
-                                            isBordered
+                                                radius="lg"
+                                                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                                            /></Link>
+                                        }
+                                        subtitle="3 incompleted steps"
+                                        title={<Link to={'/conversations/show/10'} onClick={(e) => {
+                                            e.stopPropagation()
+                                            dispatch(setDesktopNotification(false))
+                                        }}>Janelle Lenard</Link>}
+                                        classNames={{ content: 'flex flex-col gap-2' }}
+                                    >
+                                        <p>1\ {defaultContent}</p>
 
-                                            radius="lg"
-                                            src="https://i.pravatar.cc/150?u=a04258114e29026702d"
-                                        /></Link>
-                                    }
-                                    subtitle={
-                                        <p className="flex">
-                                            2 issues to<span className="text-primary ml-1">fix now</span>
-                                        </p>
-                                    }
-                                    title={<Link to={'/conversations/show/11'} onClick={(e) => {
-                                        e.stopPropagation()
-                                        dispatch(setDesktopNotification(false))
-                                    }}>Zoey Lang</Link>}
-                                >
-                                    {defaultContent}
-                                </AccordionItem>
+                                        <p>2\ ed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
 
-                            </Accordion>
+                                    </AccordionItem>
+                                    <AccordionItem
+                                        key="3"
+                                        aria-label="Zoey Lang"
+                                        startContent={<Link to={'/conversations/show/11'} onClick={(e) => {
+                                            e.stopPropagation()
+                                            dispatch(setDesktopNotification(false))
+                                        }}>
+                                            <Avatar
+                                                isBordered
+
+                                                radius="lg"
+                                                src="https://i.pravatar.cc/150?u=a04258114e29026702d"
+                                            /></Link>
+                                        }
+                                        subtitle={
+                                            <p className="flex">
+                                                2 issues to<span className="text-primary ml-1">fix now</span>
+                                            </p>
+                                        }
+                                        title={<Link to={'/conversations/show/11'} onClick={(e) => {
+                                            e.stopPropagation()
+                                            dispatch(setDesktopNotification(false))
+                                        }}>Zoey Lang</Link>}
+                                    >
+                                        {defaultContent}
+                                    </AccordionItem>
+
+                                </Accordion> </div>
                         </motion.div>
                     </div>
                     <Tooltip content='Abdellah ait bachikh' placement="bottom" showArrow><Link to={"/profile/12"} ><Avatar isBordered /> </Link></Tooltip>
